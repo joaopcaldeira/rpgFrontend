@@ -1,22 +1,20 @@
 import axios from "axios";
 import { useState } from "react";
 
-function Login() {
+function CreateAccount() {
 
+    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [user, setUser] = useState(null);
 
-    const handleLogin = async (e) => {
+    const handleCreatingAccount = async (e) => {
         e.preventDefault();
 
-        console.log(email, password);
-
-
         try {
-            const response = await axios.post('http://localhost:3000/login',
-                JSON.stringify({ email, password }),
+            const response = await axios.post('http://localhost:3000/user',
+                JSON.stringify({ name, email, password }),
                 { headers: { 'Content-Type': 'application/json' } }
             );
 
@@ -32,18 +30,18 @@ function Login() {
         }
     }
 
-    const handleLogout = async (e) => {
-        e.preventDefault();
-        setUser(null);
-        setError('');
-    }
-
     return (
         <div className="login-from-wrap">
             {user == null ? (
                 <div>
-                    <h2>Login</h2>
+                    <h2>Create Account</h2>
                     <form className="login-form">
+                        <input type="name"
+                            name="name"
+                            placeholder='Name'
+                            required
+                            onChange={(e) => setName(e.target.value)}
+                        />
                         <input type="email"
                             name="emai"
                             placeholder='Email'
@@ -58,20 +56,17 @@ function Login() {
                         />
                         <button type='submit'
                             className='btn-login'
-                            onClick={(e) => handleLogin(e)}>Login</button>
+                            onClick={(e) => handleCreatingAccount(e)}>Create</button>
                     </form>
                     <p>{error}</p>
                 </div>
             ) : (
                 <div>
-                    <h2>Olá, {user.name}</h2>
-                    <button type="button"
-                        className='btn-login'
-                        onClick={(e) => handleLogout(e)}>Logout</button>
+                    <h2>Conta Criada com sucesso</h2>
                 </div>
             )}
         </div>
-    );
+    )
 }
 
-export default Login;
+export default CreateAccount;
