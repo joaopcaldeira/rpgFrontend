@@ -14,7 +14,8 @@ function Footer() {
                 <FaGithub />
             </Link>
         </ul>
-        <p className={styles.copy_right}><span>RPG System</span> &copy; 2023</p>
+        <p className={styles.copy_right}>Email: joaopccaldeira1999@gmail.com </p>
+        <p className={styles.copy_right}><span>RPG System</span> Criado por João Pedro Caldeira &copy; 2023</p>
     </footer>)
 }
 

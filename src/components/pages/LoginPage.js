@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import styles from "./Login.module.css"
+import styles from "../Login.module.css"
 
-function Login() {
+function LoginPage() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -43,7 +43,7 @@ function Login() {
         <nav className={styles.item}>
             {user == null ? (
                 <div >
-                    <div>Login</div>
+                    <h1 className={styles.text}>Login</h1>
                     <form>
                         <div>
                             <input type="email"
@@ -77,4 +77,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default LoginPage;

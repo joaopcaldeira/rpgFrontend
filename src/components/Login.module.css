@@ -1,0 +1,17 @@
+.item {
+    color: #fff;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.text {
+    color: #222;
+}
+
+input,
+button {
+    padding: 10px;
+    color: #fff;
+    background-color: #222;
+}
