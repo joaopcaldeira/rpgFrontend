@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../../contextes/UserContext";
 import styles from "../Login.module.css"
 
 function LoginPage() {
@@ -7,14 +8,10 @@ function LoginPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [user, setUser] = useState(null);
+    const { user, setUser } = useContext(UserContext)
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
-        console.log(email, password);
-
-
         try {
             const response = await axios.post('http://localhost:3000/login',
                 JSON.stringify({ email, password }),
@@ -39,42 +36,36 @@ function LoginPage() {
         setError('');
     }
 
-    return (
-        <nav className={styles.item}>
-            {user == null ? (
-                <div >
-                    <h1 className={styles.text}>Login</h1>
-                    <form>
-                        <div>
-                            <input type="email"
-                                name="emai"
-                                placeholder='Email'
-                                required
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                        <input type="password"
-                            name="password"
-                            placeholder='Password'
-                            required
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                        <button type='submit'
-                            className='btn-login'
-                            onClick={(e) => handleLogin(e)}>Login</button>
-                    </form>
-                    <p>{error}</p>
-                </div>
-            ) : (
-                <div>
-                    <p>User: {user.name}</p>
-                    <button type="button"
-                        className='btn-login'
-                        onClick={(e) => handleLogout(e)}>Logout</button>
-                </div>
-            )}
-        </nav>
-    );
+    return user == null ? (
+        <div className={styles.item}>
+            <h1 className={styles.text}>Login</h1>
+            <form>
+                <input type="email"
+                    name="emai"
+                    placeholder='Email'
+                    required
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <input type="password"
+                    name="password"
+                    placeholder='Password'
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button type='submit'
+                    className='btn-login'
+                    onClick={(e) => handleLogin(e)}>Login</button>
+            </form>
+            <p>{error}</p>
+        </div>
+    ) : (
+        <div className={styles.text}>
+            <p>User: {user.name}</p>
+            <button type="button"
+                className='btn-login'
+                onClick={(e) => handleLogout(e)}>Logout</button>
+        </div>
+    )
 }
 
 export default LoginPage;
