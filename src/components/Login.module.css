@@ -1,19 +1,19 @@
 .item {
-    color: #fff;
-    text-decoration: none;
-    align-items: center;
-    justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
 }
 
 .text {
-    color: #222;
+  color: #222;
 }
 
 input,
 button {
-    padding: 10px;
-    color: #fff;
-    background-color: #222;
-    align-items: center;
-    justify-content: center;
+  padding: 10px;
+  color: #fff;
+  background-color: #222;
+  align-items: center;
+  justify-content: center;
 }
